@@ -12,8 +12,9 @@ TOKEN_FILE="$HOME/.github-token"
 [ -f "$TOKEN_FILE" ] || { echo "Нет файла с токеном: $TOKEN_FILE" >&2; exit 1; }
 TOKEN="$(tr -d ' \t\r\n' < "$TOKEN_FILE")"
 
-# index.html — та же статья, чтобы корень сайта открывался сразу
-cp -f TOPUS_Wrong_transfer_A4_dark.html index.html
+# ВАЖНО: index.html — это сам сайт (статья + обложка + og-мета).
+# Исходный TOPUS_Wrong_transfer_A4_dark.html не перезаписываем, иначе пропадут
+# обложка и превью для мессенджеров.
 touch .nojekyll
 
 [ -d .git ] || {
